@@ -1,4 +1,4 @@
-package main.java.com.iot.backend.model;
+package com.iot.backend.model;
 
 public class DashboardData {
     
