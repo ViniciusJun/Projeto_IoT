@@ -68,7 +68,7 @@ public abstract class Sensor {
             }
         }, 0, intervaloMs, TimeUnit.MILLISECONDS);
         
-        System.out.println("✅ Sensor " + tipo + " (" + id + ") iniciado - Intervalo: " + intervaloMs + "ms");
+        System.out.println(" Sensor " + tipo + " (" + id + ") iniciado - Intervalo: " + intervaloMs + "ms");
     }
     
     /**
@@ -77,7 +77,7 @@ public abstract class Sensor {
     public void parar() {
         ativo = false;
         scheduler.shutdown();
-        System.out.println("⏹️ Sensor " + tipo + " (" + id + ") parado");
+        System.out.println(" Sensor " + tipo + " (" + id + ") parado");
     }
     
     /**

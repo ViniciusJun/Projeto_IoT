@@ -22,7 +22,7 @@ public class GasSensor extends Sensor {
      */
     public void ativarSimulacaoVazamento() {
         this.modoVazamentoAtivo = true;
-        System.err.println("🔥🔥🔥 SIMULAÇÃO: VAZAMENTO DE GÁS ATIVADO! 🔥🔥🔥");
+        System.err.println(" SIMULAÇÃO: VAZAMENTO DE GÁS ATIVADO! ");
     }
     
     /**
@@ -72,15 +72,15 @@ public class GasSensor extends Sensor {
     protected boolean verificarAlerta(double valor) {
         // Alerta 1: Nível perigoso (vermelho)
         if (valor > ALERTA_VERMELHO) {
-            System.err.println("🔥🔴 ALERTA CRÍTICO: VAZAMENTO DE GÁS DETECTADO! " + valor + " ppm");
-            System.err.println("🔴 AÇÃO: Evacue o local e não acione interruptores!");
+            System.err.println(" ALERTA CRÍTICO: VAZAMENTO DE GÁS DETECTADO! " + valor + " ppm");
+            System.err.println(" AÇÃO: Evacue o local e não acione interruptores!");
             return true;
         }
         
         // Alerta 2: Nível de atenção (amarelo)
         if (valor > ALERTA_AMARELO) {
-            System.err.println("⚠️🟡 ATENÇÃO: Nível elevado de gás! " + valor + " ppm");
-            System.err.println("🟡 AÇÃO: Verifique se o fogão está desligado e ventile o ambiente");
+            System.err.println(" ATENÇÃO: Nível elevado de gás! " + valor + " ppm");
+            System.err.println(" AÇÃO: Verifique se o fogão está desligado e ventile o ambiente");
             return true;
         }
         

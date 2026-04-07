@@ -56,13 +56,13 @@ public class AguaSensor extends Sensor {
         
         // Alerta 1: Fluxo alto na madrugada (possível vazamento)
         if (isMadrugada(agora) && valor > VAZAMENTO_NOTURNO_LIMITE) {
-            System.err.println("💧 ALERTA: Possível vazamento de água na madrugada! Fluxo: " + valor + " L/min");
+            System.err.println(" ALERTA: Possível vazamento de água na madrugada! Fluxo: " + valor + " L/min");
             return true;
         }
         
         // Alerta 2: Fluxo extremamente alto (vazamento grave ou consumo excessivo)
         if (valor > VAZAMENTO_MAXIMO) {
-            System.err.println("💧 ALERTA CRÍTICO: Fluxo de água muito elevado! " + valor + " L/min");
+            System.err.println(" ALERTA CRÍTICO: Fluxo de água muito elevado! " + valor + " L/min");
             return true;
         }
         

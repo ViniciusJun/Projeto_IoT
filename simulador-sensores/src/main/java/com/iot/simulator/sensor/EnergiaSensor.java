@@ -64,13 +64,13 @@ public class EnergiaSensor extends Sensor {
     protected boolean verificarAlerta(double valor) {
         // Alerta 1: Sobrecarga elétrica
         if (valor > SOBRECARGA_LIMITE) {
-            System.err.println("⚡ ALERTA CRÍTICO: Sobrecarga elétrica detectada! " + valor + " W");
+            System.err.println(" ALERTA CRÍTICO: Sobrecarga elétrica detectada! " + valor + " W");
             return true;
         }
         
         // Alerta 2: Consumo muito alto por período prolongado
         if (valor > CONSUMO_ALTO_LIMITE && !isMadrugada(LocalTime.now())) {
-            System.err.println("⚡ ALERTA: Consumo elétrico elevado! " + valor + " W");
+            System.err.println(" ALERTA: Consumo elétrico elevado! " + valor + " W");
             return true;
         }
         

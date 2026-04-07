@@ -77,11 +77,11 @@ public class Main {
             
             // 5. Exibe instruções
             System.out.println("\n╔══════════════════════════════════════════════════════════╗");
-            System.out.println("║  ✅ SISTEMA EM EXECUÇÃO                                 ║");
-            System.out.println("║  📡 Dados sendo publicados via MQTT                     ║");
-            System.out.println("║  🔥 Digite 'vazar' no console para simular vazamento    ║");
-            System.out.println("║  🔥 Digite 'normal' para voltar ao normal               ║");
-            System.out.println("║  🛑 Digite 'sair' para encerrar o simulador             ║");
+            System.out.println("║     SISTEMA EM EXECUÇÃO                                  ║");
+            System.out.println("║     Dados sendo publicados via  MQTT                     ║");
+            System.out.println("║     Digite 'vazar' no console para simular  vazamento    ║");
+            System.out.println("║     Digite 'normal' para voltar ao  normal               ║");
+            System.out.println("║     Digite 'sair' para encerrar o  simulador             ║");
             System.out.println("╚══════════════════════════════════════════════════════════╝\n");
             
             // Loop principal - mantém o programa rodando até o usuário digitar 'sair'
