@@ -34,9 +34,9 @@ O desperdício de recursos naturais e os riscos domésticos (vazamentos de gás,
 |---|----------|--------|
 | 1 | Projetar arquitetura IoT escalável | ✅ Concluído |
 | 2 | Implementar simulador de sensores em Java | ✅ Concluído |
-| 3 | Desenvolver backend Spring Boot | 🚧 Em desenvolvimento |
-| 4 | Criar regras de detecção de anomalias | ⏳ Pendente |
-| 5 | Construir dashboard web | ⏳ Pendente |
+| 3 | Desenvolver backend Spring Boot | ✅ Concluído |
+| 4 | Criar regras de detecção de anomalias | ✅ Concluído |
+| 5 | Construir dashboard web | 🚧 Em desenvolvimento |
 | 6 | Integrar autenticação NFC simulada | ⏳ Pendente |
 
 ---
