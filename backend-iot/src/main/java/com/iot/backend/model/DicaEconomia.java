@@ -1,14 +1,9 @@
 package com.iot.backend.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "dicas_economia")
-@Data
-@NoArgsConstructor
-
 public class DicaEconomia {
     
     @Id
@@ -16,7 +11,7 @@ public class DicaEconomia {
     private Long id;
     
     @Column(nullable = false)
-    private String categoria; // AGUA, ENERGIA, GAS
+    private String categoria;
     
     @Column(nullable = false, length = 500)
     private String titulo;
@@ -27,6 +22,9 @@ public class DicaEconomia {
     private String icone;
     private int ordem;
     
+    // Construtores
+    public DicaEconomia() {}
+    
     public DicaEconomia(String categoria, String titulo, String descricao, String icone, int ordem) {
         this.categoria = categoria;
         this.titulo = titulo;
@@ -34,4 +32,23 @@ public class DicaEconomia {
         this.icone = icone;
         this.ordem = ordem;
     }
+    
+    // Getters e Setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    
+    public String getCategoria() { return categoria; }
+    public void setCategoria(String categoria) { this.categoria = categoria; }
+    
+    public String getTitulo() { return titulo; }
+    public void setTitulo(String titulo) { this.titulo = titulo; }
+    
+    public String getDescricao() { return descricao; }
+    public void setDescricao(String descricao) { this.descricao = descricao; }
+    
+    public String getIcone() { return icone; }
+    public void setIcone(String icone) { this.icone = icone; }
+    
+    public int getOrdem() { return ordem; }
+    public void setOrdem(int ordem) { this.ordem = ordem; }
 }
