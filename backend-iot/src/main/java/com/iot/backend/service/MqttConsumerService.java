@@ -29,6 +29,9 @@ public class MqttConsumerService {
         String payload = message.getPayload();
         String topic = (String) message.getHeaders().get("mqtt_receivedTopic");
         
+        System.out.println("MQTT Recebido - Tópico: " + topic);
+        System.out.println("Payload: " + payload);
+        
         try {
             // Parse do JSON recebido do simulador
             Map<String, Object> dados = gson.fromJson(payload, Map.class);
@@ -39,11 +42,13 @@ public class MqttConsumerService {
             String unidade = (String) dados.get("unidade");
             boolean alertaOrigem = Boolean.TRUE.equals(dados.get("alerta"));
             
+            System.out.println("Processando: tipo=" + tipo + ", valor=" + valor + ", unidade=" + unidade);
+            
             // Cria e salva a leitura
             Leitura leitura = new Leitura(sensorId, tipo, valor, unidade, alertaOrigem);
             leitura = leituraRepository.save(leitura);
             
-            System.out.printf(" Leitura salva: %s - %.2f %s%n", tipo, valor, unidade);
+            System.out.println("Leitura salva ID: " + leitura.getId());
             
             // Verifica regras de alerta adicionais no backend
             alertaService.verificarRegras(tipo, valor);
@@ -52,7 +57,8 @@ public class MqttConsumerService {
             webSocketService.enviarLeitura(leitura);
             
         } catch (Exception e) {
-            System.err.println(" Erro ao processar mensagem MQTT: " + e.getMessage());
+            System.err.println("Erro ao processar mensagem MQTT: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }
