@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>IoT Residencial - Mobile</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 15px;
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .header h1 {
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .valor {
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .alerta {
+            background: #e74c3c;
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .dica {
+            background: #2c3e50;
+            color: white;
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+        
+        .footer {
+            text-align: center;
+            color: white;
+            font-size: 0.7rem;
+            margin-top: 20px;
+        }
+        
+        .refresh-btn {
+            background: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-top: 15px;
+            width: 100%;
+            cursor: pointer;
+        }
+        
+        .status {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+        
+        .status.online { background: #2ecc71; box-shadow: 0 0 5px #2ecc71; }
+        .status.offline { background: #e74c3c; }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .alerta-critico {
+            animation: pulse 1s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>
+                <i>🏠</i> IoT Residencial
+            </h1>
+            <p style="font-size: 0.8rem; opacity: 0.9;">
+                Monitoramento via NFC | Dados em tempo real
+            </p>
+        </div>
+        
+        <div id="status-bar" class="card" style="background: #2c3e50; color: white; text-align: center;">
+            <span class="status online"></span> Conectado
+        </div>
+        
+        <div id="alertas-container"></div>
+        
+        <div class="card">
+            <div class="card-header">
+                <span>💧 Água</span>
+                <span id="agua-status">✓ Normal</span>
+            </div>
+            <div class="valor">
+                <span id="agua-valor">--</span> <small>L/min</small>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <span>⚡ Energia</span>
+                <span id="energia-status">✓ Normal</span>
+            </div>
+            <div class="valor">
+                <span id="energia-valor">--</span> <small>W</small>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <span>🔥 Gás</span>
+                <span id="gas-status">✓ Normal</span>
+            </div>
+            <div class="valor">
+                <span id="gas-valor">--</span> <small>ppm</small>
+            </div>
+        </div>
+        
+        <div id="dicas-container"></div>
+        
+        <button class="refresh-btn" onclick="carregarDados()">
+            🔄 Atualizar Agora
+        </button>
+        
+        <div class="footer">
+            <p>📱 Acesse via NFC | Dados em tempo real</p>
+            <p style="margin-top: 5px;">⚡ Toque o celular na tag NFC para abrir este dashboard</p>
+        </div>
+    </div>
+    
+    <script>
+        async function carregarDados() {
+            try {
+                const response = await fetch('/api/dashboard/dados');
+                const data = await response.json();
+                
+                // Atualizar água
+                if (data.ultimaAgua) {
+                    document.getElementById('agua-valor').textContent = data.ultimaAgua.valor.toFixed(1);
+                    document.getElementById('agua-status').innerHTML = data.ultimaAgua.alerta ? '⚠️ ALERTA' : '✓ Normal';
+                }
+                
+                // Atualizar energia
+                if (data.ultimaEnergia) {
+                    document.getElementById('energia-valor').textContent = data.ultimaEnergia.valor.toFixed(0);
+                    document.getElementById('energia-status').innerHTML = data.ultimaEnergia.alerta ? '⚠️ ALERTA' : '✓ Normal';
+                }
+                
+                // Atualizar gás
+                if (data.ultimoGas) {
+                    document.getElementById('gas-valor').textContent = data.ultimoGas.valor.toFixed(1);
+                    document.getElementById('gas-status').innerHTML = data.ultimoGas.alerta ? '⚠️ ALERTA' : '✓ Normal';
+                }
+                
+                // Alertas
+                if (data.alertas && data.alertas.length > 0) {
+                    const alertasHtml = data.alertas.slice(0, 3).map(alerta => `
+                        <div class="alerta">
+                            🚨 ${alerta.mensagem.substring(0, 100)}
+                        </div>
+                    `).join('');
+                    document.getElementById('alertas-container').innerHTML = alertasHtml;
+                } else {
+                    document.getElementById('alertas-container').innerHTML = '';
+                }
+                
+                // Dicas
+                if (data.dicas && data.dicas.length > 0) {
+                    const dicasHtml = data.dicas.slice(0, 2).map(dica => `
+                        <div class="dica">
+                            💡 <strong>${dica.titulo}</strong><br>
+                            <small>${dica.descricao.substring(0, 120)}...</small>
+                        </div>
+                    `).join('');
+                    document.getElementById('dicas-container').innerHTML = dicasHtml;
+                }
+                
+                console.log('✅ Dados atualizados');
+                
+            } catch (error) {
+                console.error('❌ Erro:', error);
+                document.getElementById('status-bar').innerHTML = '<span class="status offline"></span> Offline - Recarregue a página';
+            }
+        }
+        
+        // Atualizar a cada 10 segundos
+        carregarDados();
+        setInterval(carregarDados, 10000);
+    </script>
+</body>
+</html>
