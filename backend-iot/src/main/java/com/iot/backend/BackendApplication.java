@@ -24,7 +24,7 @@ public class BackendApplication implements CommandLineRunner {
         System.out.println("║    API disponível em: http://localhost:8080                  ║");
         System.out.println("║    Dashboard: http://localhost:8080                          ║");
         System.out.println("║    WebSocket: ws://localhost:8080/ws                         ║");
-        System.out.println("║     H2 Console: http://localhost:8080/h2-console             ║");
+        System.out.println("║    H2 Console: http://localhost:8080/h2-console              ║");
         System.out.println("║                                                              ║");
         System.out.println("║    Comandos do simulador: vazar, normal, sair                ║");
         System.out.println("╚══════════════════════════════════════════════════════════════╝");
