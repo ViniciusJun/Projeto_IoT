@@ -12,6 +12,8 @@ C:\Users\vinic\Documents\GitHub\Projeto_IoT\backend-iot\src\main\java\com\iot\ba
 C:\Users\vinic\Documents\GitHub\Projeto_IoT\backend-iot\src\main\java\com\iot\backend\repository\AlertaRepository.java
 C:\Users\vinic\Documents\GitHub\Projeto_IoT\backend-iot\src\main\java\com\iot\backend\BackendApplication.java
 C:\Users\vinic\Documents\GitHub\Projeto_IoT\backend-iot\src\main\java\com\iot\backend\service\AlertaService.java
+C:\Users\vinic\Documents\GitHub\Projeto_IoT\backend-iot\src\main\java\com\iot\backend\controller\TesteController.java
+C:\Users\vinic\Documents\GitHub\Projeto_IoT\backend-iot\src\main\java\com\iot\backend\controller\PaginaController.java
 C:\Users\vinic\Documents\GitHub\Projeto_IoT\backend-iot\src\main\java\com\iot\backend\model\DicaEconomia.java
 C:\Users\vinic\Documents\GitHub\Projeto_IoT\backend-iot\src\main\java\com\iot\backend\repository\LeituraRepository.java
 C:\Users\vinic\Documents\GitHub\Projeto_IoT\backend-iot\src\main\java\com\iot\backend\model\Leitura.java

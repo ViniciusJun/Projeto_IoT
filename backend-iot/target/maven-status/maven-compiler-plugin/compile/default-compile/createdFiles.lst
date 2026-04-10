@@ -1,3 +1,10 @@
+com\iot\backend\controller\PaginaController.class
+com\iot\backend\controller\TesteController.class
+com\iot\backend\service\WebSocketService.class
+com\iot\backend\model\Alerta.class
+com\iot\backend\model\Modulo.class
+com\iot\backend\model\Leitura.class
+com\iot\backend\BackendApplication.class
 com\iot\backend\repository\AlertaRepository.class
 com\iot\backend\service\DicasService.class
 com\iot\backend\model\DicaEconomia.class
@@ -5,15 +12,10 @@ com\iot\backend\controller\ModuloController.class
 com\iot\backend\repository\DicaEconomiaRepository.class
 com\iot\backend\repository\ModuloRepository.class
 com\iot\backend\service\AlertaService.class
-com\iot\backend\service\WebSocketService.class
 com\iot\backend\config\WebSocketConfig.class
-com\iot\backend\model\Alerta.class
 com\iot\backend\model\DashboardData.class
 com\iot\backend\service\MqttConsumerService.class
 com\iot\backend\controller\DicasController.class
-com\iot\backend\model\Modulo.class
 com\iot\backend\repository\LeituraRepository.class
-com\iot\backend\model\Leitura.class
-com\iot\backend\BackendApplication.class
 com\iot\backend\config\MqttConfig.class
 com\iot\backend\controller\DashboardController.class

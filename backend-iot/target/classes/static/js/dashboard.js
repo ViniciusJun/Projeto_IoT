@@ -141,6 +141,18 @@ async function resolverAlerta(id) {
         carregarAlertas();
         console.log(`✅ Alerta ${id} resolvido`);
     } catch (error) {
+        console.error('❌ Erro ao resolver alerta:', error);
+    }
+}
+
+// Carregar dicas de economia
+async function carregarDicas() {
+    try {
+        const response = await fetch('/api/dicas');
+        const dicas = await response.json();
+        
+        const container = document.getElementById('dicas-grid');
+        if (!container) return;
         
         if (dicas && dicas.length > 0) {
             container.innerHTML = dicas.map(dica => `
@@ -210,7 +222,5 @@ function atualizarStatus(conectado) {
             statusElement.innerHTML = '🔴 Offline';
             statusElement.className = 'status-badge offline';
         }
-    }
-}        console.error('❌ Erro ao resolver alerta:', error);
     }
 }

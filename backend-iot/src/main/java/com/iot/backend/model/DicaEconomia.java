@@ -22,7 +22,6 @@ public class DicaEconomia {
     private String icone;
     private int ordem;
     
-    // Construtores
     public DicaEconomia() {}
     
     public DicaEconomia(String categoria, String titulo, String descricao, String icone, int ordem) {
