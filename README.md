@@ -36,8 +36,9 @@ O desperdício de recursos naturais e os riscos domésticos (vazamentos de gás,
 | 2 | Implementar simulador de sensores em Java | ✅ Concluído |
 | 3 | Desenvolver backend Spring Boot | ✅ Concluído |
 | 4 | Criar regras de detecção de anomalias | ✅ Concluído |
-| 5 | Construir dashboard web | 🚧 Em desenvolvimento |
-| 6 | Integrar autenticação NFC simulada | ⏳ Pendente |
+| 5 | Construir dashboard web | ✅ Concluído |
+| 6 | Integrar autenticação NFC simulada | ✅ Concluído |
+| 7 | Documentação | 🚧 Em desenvolvimento |
 
 ---
 
@@ -79,57 +80,56 @@ O desperdício de recursos naturais e os riscos domésticos (vazamentos de gás,
 
 ## 📁 Estrutura do Projeto
 ```text
-sistema-iot-residencial/
+Projeto_IoT/
+├── simulador-sensores/          # ✅ Simulador Java
+│   ├── src/main/java/com/iot/simulator/
+│   │   ├── Main.java
+│   │   ├── SensorData.java
+│   │   ├── sensor/
+│   │   │   ├── Sensor.java
+│   │   │   ├── AguaSensor.java
+│   │   │   ├── EnergiaSensor.java
+│   │   │   └── GasSensor.java
+│   │   └── mqtt/
+│   │       └── MqttPublisher.java
+│   └── pom.xml
 │
-├── .gitignore                     # Arquivos ignorados pelo Git
-├── README.md                      # Documentação principal
-├── LICENSE                        # Licença MIT
-│
-├── simulador-sensores/            # Simulador Java dos sensores IoT
-│   ├── pom.xml                    # Configuração Maven
-│   └── src/
-│       └── main/
-│           └── java/
-│               └── com/
-│                   └── iot/
-│                       └── simulator/
-│                           ├── Main.java
-│                           ├── sensor/
-│                           │   ├── Sensor.java
-│                           │   ├── AguaSensor.java
-│                           │   ├── EnergiaSensor.java
-│                           │   └── GasSensor.java
-│                           └── mqtt/
-│                               └── MqttPublisher.java
-│
-├── backend-iot/                   # Backend Spring Boot
-│   ├── pom.xml
-│   └── src/
-│       ├── main/
-│       │   ├── java/
-│       │   │   └── com/
-│       │   │       └── iot/
-│       │   │           └── backend/
-│       │   │               ├── BackendApplication.java
-│       │   │               ├── controller/
-│       │   │               ├── service/
-│       │   │               ├── repository/
-│       │   │               ├── model/
-│       │   │               └── config/
-│       │   └── resources/
-│       │       └── application.properties
-│       └── test/
-│
-├── dashboard-web/                 # Interface web
-│   ├── index.html
-│   ├── css/
-│   │   └── style.css
-│   ├── js/
-│   │   ├── main.js
-│   │   ├── charts.js
-│   │   └── mqtt-client.js
-│   └── assets/
-│       └── images/
+├── backend-iot/                 # ✅ Backend Spring Boot
+│   ├── src/main/java/com/iot/backend/
+│   │   ├── BackendApplication.java
+│   │   ├── config/
+│   │   │   ├── MqttConfig.java
+│   │   │   └── WebSocketConfig.java
+│   │   ├── controller/
+│   │   │   ├── DashboardController.java
+│   │   │   ├── ModuloController.java
+│   │   │   └── DicasController.java
+│   │   ├── service/
+│   │   │   ├── MqttConsumerService.java
+│   │   │   ├── AlertaService.java
+│   │   │   ├── DicasService.java
+│   │   │   └── WebSocketService.java
+│   │   ├── model/
+│   │   │   ├── Leitura.java
+│   │   │   ├── Alerta.java
+│   │   │   ├── Modulo.java
+│   │   │   └── DicaEconomia.java
+│   │   └── repository/
+│   │       ├── LeituraRepository.java
+│   │       ├── AlertaRepository.java
+│   │       ├── ModuloRepository.java
+│   │       └── DicaEconomiaRepository.java
+│   ├── src/main/resources/
+│   │   ├── application.properties
+│   │   └── static/
+│   │       ├── index.html
+│   │       ├── mobile.html
+│   │       ├── css/style.css
+│   │       └── js/
+│   │           ├── dashboard.js
+│   │           ├── charts.js
+│   │           └── websocket.js
+│   └── pom.xml
 │
 ├── docs/                          # Documentação do PI
 │   ├── diagramas/
