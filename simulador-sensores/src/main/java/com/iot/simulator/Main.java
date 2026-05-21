@@ -45,7 +45,7 @@ public class Main {
                         publisherHolder[0].publish(data, aguaSensor.getTopicoMqtt());
                     }
                 } catch (MqttException e) {
-                    System.err.println("❌ Erro ao publicar água: " + e.getMessage());
+                    System.err.println("Erro ao publicar água: " + e.getMessage());
                 }
             });
             
@@ -55,7 +55,7 @@ public class Main {
                         publisherHolder[0].publish(data, energiaSensor.getTopicoMqtt());
                     }
                 } catch (MqttException e) {
-                    System.err.println("❌ Erro ao publicar energia: " + e.getMessage());
+                    System.err.println("Erro ao publicar energia: " + e.getMessage());
                 }
             });
             
@@ -65,12 +65,12 @@ public class Main {
                         publisherHolder[0].publish(data, gasSensor.getTopicoMqtt());
                     }
                 } catch (MqttException e) {
-                    System.err.println("❌ Erro ao publicar gás: " + e.getMessage());
+                    System.err.println("Erro ao publicar gás: " + e.getMessage());
                 }
             });
             
             // 4. Inicia os sensores
-            System.out.println("\n🚀 Iniciando sensores...\n");
+            System.out.println("\nIniciando sensores...\n");
             aguaSensor.iniciar(INTERVALO_SENSORES_MS);
             energiaSensor.iniciar(INTERVALO_SENSORES_MS);
             gasSensor.iniciar(INTERVALO_SENSORES_MS);
@@ -97,7 +97,7 @@ public class Main {
                             gasSensor.desativarSimulacaoVazamento();
                             break;
                         case "sair":
-                            System.out.println("\n🛑 Encerrando simulador...");
+                            System.out.println("\nEncerrando simulador...");
                             executando = false;
                             break;
                         default:
@@ -118,10 +118,10 @@ public class Main {
                 publisherHolder[0].disconnect();
             }
             
-            System.out.println("\n✅ Simulador encerrado com sucesso!");
+            System.out.println("\nSimulador encerrado com sucesso!");
             
         } catch (Exception e) {
-            System.err.println("\n❌ ERRO FATAL: " + e.getMessage());
+            System.err.println("\nERRO FATAL: " + e.getMessage());
             e.printStackTrace();
             
             // Tenta desconectar em caso de erro
