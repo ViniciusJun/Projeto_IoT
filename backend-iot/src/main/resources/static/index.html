@@ -295,69 +295,68 @@
             }
         }
         
-        // Carregar alertas (apenas últimos 5)
-        async function carregarAlertas() {
-            try {
-                console.log('🔍 Buscando alertas...');
-                const response = await fetch('/api/dashboard/alertas');
-                const data = await response.json();
-                
-                console.log('📋 Dados recebidos da API:', data);
-                
-                const container = document.getElementById('alertas-list');
-                const countSpan = document.getElementById('alertas-count');
-                
-                // Verificar estrutura da resposta
-                let alertas = [];
-                if (data.alertas && Array.isArray(data.alertas)) {
-                    alertas = data.alertas;
-                } else if (Array.isArray(data)) {
-                    alertas = data;
-                }
-                
-                console.log(`📊 Total de alertas: ${alertas.length}`);
-                
-                // Filtrar apenas não resolvidos
-                const alertasAtivos = alertas.filter(a => !a.resolvido);
-                console.log(`⚠️ Alertas ativos: ${alertasAtivos.length}`);
-                
-                if (alertasAtivos.length > 0) {
-                    countSpan.innerText = `(${alertasAtivos.length} ativos)`;
-                    
-                    // Mostrar apenas os últimos 5 alertas
-                    const ultimosAlertas = alertasAtivos.slice(-5).reverse();
-                    
-                    container.innerHTML = ultimosAlertas.map(alerta => `
-                        <div class="alerta-item ${alerta.severidade ? alerta.severidade.toLowerCase() : 'medio'}">
-                            <div class="alerta-mensagem">
-                                <span class="alerta-severidade">[${alerta.severidade || 'MEDIA'}]</span>
-                                ${alerta.mensagem}
-                                <small style="display: block; color: #666; font-size: 0.7rem; margin-top: 5px;">
-                                    ${alerta.timestamp ? new Date(alerta.timestamp).toLocaleString() : new Date().toLocaleString()}
-                                </small>
-                            </div>
-                            <button class="btn-resolver" onclick="resolverAlerta(${alerta.id})">
-                                Resolver
-                            </button>
-                        </div>
-                    `).join('');
-                    
-                    if (alertasAtivos.length > 5) {
-                        container.innerHTML += `<div style="text-align: center; padding: 10px; color: #666; font-size: 0.8rem;">
-                            <i class="fas fa-ellipsis-h"></i> +${alertasAtivos.length - 5} alertas ocultos. Resolva os ativos para ver mais.
-                        </div>`;
-                    }
-                } else {
-                    countSpan.innerText = '(0 ativos)';
-                    container.innerHTML = '<div style="text-align: center; padding: 20px;">✅ Nenhum alerta ativo</div>';
-                }
-                
-            } catch (error) {
-                console.error('❌ Erro ao carregar alertas:', error);
-                document.getElementById('alertas-list').innerHTML = '<div style="text-align: center; padding: 20px; color: red;">❌ Erro ao carregar alertas: ' + error.message + '</div>';
+    // Carregar alertas (apenas últimos 5)
+    async function carregarAlertas() {
+        try {
+            console.log('🔍 Buscando alertas...');
+            const response = await fetch('/api/dashboard/alertas');
+            const data = await response.json();
+            
+            console.log('📋 Dados recebidos da API:', data);
+            
+            const container = document.getElementById('alertas-list');
+            const countSpan = document.getElementById('alertas-count');
+            
+            // Verificar estrutura da resposta
+            let alertas = [];
+            if (data.alertas && Array.isArray(data.alertas)) {
+                alertas = data.alertas;
+            } else if (Array.isArray(data)) {
+                alertas = data;
             }
+            
+            console.log(`📊 Total de alertas: ${alertas.length}`);
+            
+            // Filtrar apenas não resolvidos
+            const alertasAtivos = alertas.filter(a => !a.resolvido);
+            console.log(`⚠️ Alertas ativos: ${alertasAtivos.length}`);
+            
+            if (alertasAtivos.length > 0) {
+                countSpan.innerText = `(${alertasAtivos.length} ativos)`;
+                
+                // Mostrar apenas os últimos 5 alertas
+                const ultimosAlertas = alertasAtivos.slice(-5).reverse();
+                
+                container.innerHTML = ultimosAlertas.map(alerta => `
+                    <div class="alerta-item ${alerta.severidade ? alerta.severidade.toLowerCase() : 'medio'}">
+                        <div class="alerta-mensagem">
+                            <span class="alerta-severidade">[${alerta.severidade || 'MEDIA'}]</span>
+                            ${alerta.mensagem}
+                            <small style="display: block; color: #666; font-size: 0.7rem; margin-top: 5px;">
+                                ${alerta.timestamp ? new Date(alerta.timestamp).toLocaleString() : new Date().toLocaleString()}
+                            </small>
+                        </div>
+                        <button class="btn-resolver" onclick="resolverAlerta(${alerta.id})">
+                            Resolver
+                        </button>
+                    </div>
+                `).join('');
+                
+                if (alertasAtivos.length > 5) {
+                    container.innerHTML += `<div style="text-align: center; padding: 10px; color: #666; font-size: 0.8rem;">
+                        <i class="fas fa-ellipsis-h"></i> +${alertasAtivos.length - 5} alertas ocultos. Resolva os ativos para ver mais.
+                    </div>`;
+                }
+            } else {
+                countSpan.innerText = '(0 ativos)';
+                container.innerHTML = '<div style="text-align: center; padding: 20px;">✅ Nenhum alerta ativo</div>';
+            }
+            
+        } catch (error) {
+            console.error('❌ Erro ao carregar alertas:', error);
+            document.getElementById('alertas-list').innerHTML = '<div style="text-align: center; padding: 20px; color: red;">❌ Erro ao carregar alertas: ' + error.message + '</div>';
         }
-        
+    }
         // Resolver alerta
         async function resolverAlerta(id) {
             try {
